@@ -9,7 +9,7 @@ jobs:
       - checkout
       - run: mkdir /sanity;
       - run: jmeter -n -t Staging_buildfail.jmx -l /sanity/jmeter_buildcheck_test1.jtl -e -o /sanity/jmeter_buildcheck -j jmeter.log
-      - run: %grep “ERROR” jmeter.log | wc -l
+      - run: grep “ERROR” jmeter.log | wc -l
       # run: jmeter -n -t Staging_Appinsight_summery_full.jmx -l /sanity/Staging_Summary_Test2.jtl -e -o /sanity/StagingSummary_Test2
       # run: jmeter -n -t Sonrai_PCAPIAPIs.jmx -l /sanity/PCAPI_TestResult.jtl -e -o /sanity/PCAPI_1
       # run: jmeter -n -t Sonrai_Graphql_staging.jmx -l /tmp/artifacts/runResults4.jtl -e -o /sanity/result2

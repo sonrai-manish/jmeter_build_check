@@ -19,6 +19,10 @@ jobs:
 
 # Orchestrate our job run sequence
 workflows:
+  nightly:
+    triggers:
+     - schedule:
+       cron: "0 10 * * *"
   build_and_test:
     jobs:
       - jmeter_build_check

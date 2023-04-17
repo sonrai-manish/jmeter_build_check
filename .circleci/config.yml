@@ -1,10 +1,19 @@
 version: 2.1
 
+orbs:
+  slack: circleci/slack@3.3.0
+
 # Define the jobs we want to run for this project
 jobs:
   jmeter_build_check:
     docker:
       - image: justb4/jmeter:latest
+  notify:
+    docker:
+      - image: 'cimg/base:stable'
+        auth:
+          username: manish.jamalia@sonraisecurity.com
+          password: 08Bce158#Happiness@1  # context / project UI env-var reference
     steps:
       - checkout
       - run: mkdir sanity;
@@ -16,6 +25,8 @@ jobs:
       # run: jmeter -n -t Sonrai_Graphql_staging.jmx -l /tmp/artifacts/runResults4.jtl -e -o /sanity/result2
       - store_artifacts:
          path: sanity
+      - slack/status:
+         failure_message: "build failed to meet SLA"
 
 # Orchestrate our job run sequence
 workflows:

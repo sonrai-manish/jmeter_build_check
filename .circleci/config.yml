@@ -9,7 +9,6 @@ jobs:
       - image: justb4/jmeter:latest
         
     steps:
-      - slack/notify
       - checkout
       - run: mkdir sanity;
       - run: jmeter -n -t Staging_buildfail.jmx -l sanity/jmeter_buildcheck_test1.jtl -e -o sanity/jmeter_buildcheck -j sanity/jmeter.log

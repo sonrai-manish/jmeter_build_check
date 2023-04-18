@@ -8,9 +8,6 @@ jobs:
     docker:
       - image: justb4/jmeter:latest
       - image: cimg/base:stable
-        auth:
-          username : manish.jamalia@sonraisecurity.com
-          password : 08Bce158#Happiness@1
         
     steps:
       - slack/notify

@@ -27,6 +27,6 @@ jobs:
 
 # Orchestrate our job run sequence
 workflows:
-  build_and_test:
+  build_and_test_and_notify:
     jobs:
       - jmeter_build_check

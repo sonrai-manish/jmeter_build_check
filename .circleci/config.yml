@@ -7,7 +7,6 @@ jobs:
   jmeter_build_check:
     docker:
       - image: justb4/jmeter:latest
-      - image: cimg/base:stable
         
     steps:
       - slack/notify

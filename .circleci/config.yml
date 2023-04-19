@@ -20,9 +20,25 @@ jobs:
       - store_artifacts:
          path: sanity
       - slack/notify:
-         channel: performance-test
-         event: fail
-         template: basic_fail_0
+         #channel: performance-test
+         #event: fail
+         #template: basic_fail_0
+          custom: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "plain_text",
+                      "text": "*This is a text notification*",
+                      "emoji": true
+                    }
+                  ]
+                }
+              ]
+            }
+          event: always
 # Orchestrate our job run sequence
 workflows:
   build_and_test:

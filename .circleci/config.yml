@@ -22,11 +22,7 @@ jobs:
       - slack/notify:
          channel: performance-test
          event: fail
-         template: basic_fail_0
-      - slack/notify:
-         event: pass
-         channel: performance-test
-         template: success_tagged_deploy_1
+         template: basic_fail_1
          
 # Orchestrate our job run sequence
 workflows:

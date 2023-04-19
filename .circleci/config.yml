@@ -22,6 +22,7 @@ jobs:
       - slack/notify:
          channel: performance-test
          event: fail
+         mentions: 'In View Job,got to Artificats folder and select .html file'
          template: basic_fail_1
          
 # Orchestrate our job run sequence

@@ -13,7 +13,8 @@ jobs:
       - run: mkdir sanity;
       - run: jmeter -n -t Staging_buildfail.jmx -l sanity/jmeter_buildcheck_test1.jtl -e -o sanity/jmeter_buildcheck -j sanity/jmeter.log
       - run: ls -l
-      - run: $(grep false sanity/jmeter_buildcheck_test1.jtl | wc -l) -lt "0"
+      - run: | 
+             $(grep false sanity/jmeter_buildcheck_test1.jtl | wc -l) -lt "0"
      # run: echo [$(grep false sanity/jmeter_buildcheck_test1.jtl | wc -l)] < "0"
       - store_artifacts:
           path: sanity

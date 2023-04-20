@@ -17,7 +17,9 @@ jobs:
                echo "you won"
              else 
                echo "you loss"
-      # run: echo [$(grep false sanity/jmeter_buildcheck_test1.jtl | wc -l)] < "0"
+             fi
+            
+     # run: echo [$(grep false sanity/jmeter_buildcheck_test1.jtl | wc -l)] < "0"
       - store_artifacts:
           path: sanity
       # run:  echo [$(grep false sanity/jmeter_buildcheck_test1.jtl | wc -l)] > "0"  

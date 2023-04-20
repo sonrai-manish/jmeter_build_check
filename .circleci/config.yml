@@ -15,9 +15,9 @@ jobs:
       - run: ls -l
       - run:
          environment:
-           WIN_RESULT: 1
+           WIN_RESULT:[$(grep false sanity/jmeter_buildcheck_test1.jtl | wc -l)] 
          command: |
-            if [ $WIN_RESULT = 1 ]; then
+            if [ $WIN_RESULT = 0 ]; then
              echo "You Won!"
             else
              echo "You Lose!"

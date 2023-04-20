@@ -14,12 +14,12 @@ jobs:
       - run: jmeter -n -t Staging_buildfail.jmx -l sanity/jmeter_buildcheck_test1.jtl -e -o sanity/jmeter_buildcheck -j sanity/jmeter.log
       - run: ls -l
       - when:
-          condition: echo [$(grep false sanity/jmeter_buildcheck_test1.jtl | wc -l)] = "0" 
+          condition: $(grep false sanity/jmeter_buildcheck_test1.jtl | wc -l) = "0" 
           steps:
             - run: echo "You won!"
       - when:
           condition:
-              not: echo [$(grep false sanity/jmeter_buildcheck_test1.jtl | wc -l)] > "0" 
+              not: $(grep false sanity/jmeter_buildcheck_test1.jtl | wc -l) > "0" 
           steps:
             - run: echo "You lost!"
       # run:  echo [$(grep false sanity/jmeter_buildcheck_test1.jtl | wc -l)] > "0"  

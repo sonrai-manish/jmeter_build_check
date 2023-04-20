@@ -16,8 +16,10 @@ jobs:
       - run: |
              if [ $(grep false sanity/jmeter_buildcheck_test1.jtl | wc -l) -lt "0" ]; then
                echo "pass"
+               exit 0
              else 
                echo "fail"
+               exit 1
              fi
      # run: echo [$(grep false sanity/jmeter_buildcheck_test1.jtl | wc -l)] < "0"
       - store_artifacts:

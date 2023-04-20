@@ -13,6 +13,7 @@ jobs:
       - run: mkdir sanity;
       - run: jmeter -n -t Staging_buildfail.jmx -l sanity/jmeter_buildcheck_test1.jtl -e -o sanity/jmeter_buildcheck -j sanity/jmeter.log
       - run: ls -l
+      
       - run:
          environment:
            WIN_RESULT:[$(grep false sanity/jmeter_buildcheck_test1.jtl | wc -l)] 
@@ -23,12 +24,14 @@ jobs:
              echo "You Lose!"
             fi
 
+      - store_artifacts:
+          path: sanity
       # run:  echo [$(grep false sanity/jmeter_buildcheck_test1.jtl | wc -l)] > "0"  
       # run: jmeter -n -t Staging_Appinsight_summery_full.jmx -l /sanity/Staging_Summary_Test2.jtl -e -o /sanity/StagingSummary_Test2
       # run: jmeter -n -t Sonrai_PCAPIAPIs.jmx -l /sanity/PCAPI_TestResult.jtl -e -o /sanity/PCAPI_1
       # run: jmeter -n -t Sonrai_Graphql_staging.jmx -l /tmp/artifacts/runResults4.jtl -e -o /sanity/result2
-       store_artifacts:
-        path: sanity
+       # store_artifacts:
+       #   path: sanity
       - slack/notify:
          channel: performance-test
          event: fail

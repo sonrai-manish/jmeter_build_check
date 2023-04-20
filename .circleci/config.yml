@@ -13,15 +13,16 @@ jobs:
       - run: mkdir sanity;
       - run: jmeter -n -t Staging_buildfail.jmx -l sanity/jmeter_buildcheck_test1.jtl -e -o sanity/jmeter_buildcheck -j sanity/jmeter.log
       - run: ls -l
-      - when:
-          condition: $(grep false sanity/jmeter_buildcheck_test1.jtl | wc -l) = "0" 
-          steps:
-            - run: echo "You won!"
-      - when:
-          condition:
-              not: $(grep false sanity/jmeter_buildcheck_test1.jtl | wc -l) > "0" 
-          steps:
-            - run: echo "You lost!"
+      - run:
+         environment:
+           WIN_RESULT: 1
+         command: |
+            if [ $WIN_RESULT = 1 ]; then
+             echo "You Won!"
+            else
+             echo "You Lose!"
+            fi
+
       # run:  echo [$(grep false sanity/jmeter_buildcheck_test1.jtl | wc -l)] > "0"  
       # run: jmeter -n -t Staging_Appinsight_summery_full.jmx -l /sanity/Staging_Summary_Test2.jtl -e -o /sanity/StagingSummary_Test2
       # run: jmeter -n -t Sonrai_PCAPIAPIs.jmx -l /sanity/PCAPI_TestResult.jtl -e -o /sanity/PCAPI_1

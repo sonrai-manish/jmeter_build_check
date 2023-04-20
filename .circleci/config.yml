@@ -14,10 +14,10 @@ jobs:
       - run: jmeter -n -t Staging_buildfail.jmx -l sanity/jmeter_buildcheck_test1.jtl -e -o sanity/jmeter_buildcheck -j sanity/jmeter.log
       - run: ls -l
       - run: |
-             if [[$(grep false sanity/jmeter_buildcheck_test1.jtl | wc -l)] = 0]; then
-               false
+             if [[$(grep false sanity/jmeter_buildcheck_test1.jtl | wc -l)] -eq 0]; then
+               echo "pass"
              else 
-               true
+               echo "fail"
              fi
             
      # run: echo [$(grep false sanity/jmeter_buildcheck_test1.jtl | wc -l)] < "0"

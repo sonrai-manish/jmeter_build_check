@@ -13,7 +13,7 @@ jobs:
       - run: mkdir sanity;
       - run: jmeter -n -t Staging_buildfail.jmx -l sanity/jmeter_buildcheck_test1.jtl -e -o sanity/jmeter_buildcheck -j sanity/jmeter.log
       - run: ls -l
-      - run: if [[$(grep false sanity/jmeter_buildcheck_test1.jtl | wc -l)]=0]; then
+      - run: if [$(grep false sanity/jmeter_buildcheck_test1.jtl | wc -l) = 0]; then
                echo "you won"
              else 
                echo "you loss"

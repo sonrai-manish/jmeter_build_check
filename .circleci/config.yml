@@ -11,7 +11,8 @@ jobs:
     steps:
       - checkout
       - run: mkdir sanity;
-      - run: jmeter -n -t Staging_buildfail.jmx -l sanity/jmeter_buildcheck_test1.jtl -e -o sanity/jmeter_buildcheck -j sanity/jmeter.log
+      # run: jmeter -n -t Staging_buildfail.jmx -l sanity/jmeter_buildcheck_test1.jtl -e -o sanity/jmeter_buildcheck -j sanity/jmeter.log
+      - run: jmeter -n -t Staging_AllFlows_GraphqlOperations_Final.jmx -l sanity/jmeter_buildcheck_test1.jtl -e -o sanity/jmeter_buildcheck -j sanity/jmeter.log
       - run: ls -l
       - run: |
              if [ $(grep false sanity/jmeter_buildcheck_test1.jtl | wc -l) -eq "0" ]; then
